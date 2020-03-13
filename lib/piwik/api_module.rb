@@ -4,7 +4,9 @@ module Piwik
 
     # returns default API params, used all over the place, especially in <tt>scoped_methods</tt>
     def self.defaults
-      {:period => :day, :date => Date.today, @obj.id_attr => @obj.id}
+      { :period => :day, :date => Date.today }.tap do |defaults|
+        defaults[@obj.id_attr] = @obj.id if @obj
+      end
     end
 
     # Catch incoming method calls and try to format them and send them over to the api
@@ -57,7 +59,7 @@ module Piwik
     def self.handle_api_call method, params
       method_name = "#{self.to_s.gsub('Piwik::','')}.#{method}"
       config = load_config_from_file
-      config = config.merge(params.slice(:piwik_url, :auth_token))
+      config = config.merge(params.to_h.slice(:piwik_url, :auth_token)) if params
       xml = self.call(method_name, params, config[:piwik_url], config[:auth_token])
       data = (xml.is_a?(String) && xml.is_binary_data?) ? xml : XmlSimple.xml_in(xml, {'ForceArray' => false})
       if data.is_a?(String) && data.is_binary_data?
@@ -77,7 +79,7 @@ module Piwik
     def self.api_call method, params
       method_name = "#{self.to_s.gsub('Piwik::','')}.#{method}"
       config = load_config_from_file
-      config = config.merge(params.slice(:piwik_url, :auth_token))
+      config = config.merge(params.to_h.slice(:piwik_url, :auth_token)) if params
       if params.is_a?(OpenStruct)
         params = params.marshal_dump
       end

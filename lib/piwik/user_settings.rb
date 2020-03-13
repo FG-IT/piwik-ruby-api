@@ -3,8 +3,8 @@ module Piwik
     available_methods %W{
       getResolution
       getConfiguration
-      getOS
-      getOSFamily
+      getOs
+      getOsFamily
       getMobileVsDesktop
       getBrowserVersion
       getBrowser
@@ -26,6 +26,14 @@ module Piwik
 
       def languageCode params = {}
         getLanguageCode(defaults.merge(params))
+      end
+
+      def get_os params = {}
+        getOs(defaults.merge(params))
+      end
+
+      def get_os_family params = {}
+        getOsFamily(defaults.merge(params))
       end
     end
   end
