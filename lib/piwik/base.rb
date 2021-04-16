@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'cgi'
 require 'yaml'
-require 'rest_client'
+require 'excon'
 require 'xmlsimple'
 require 'ostruct'
 
@@ -150,22 +150,13 @@ EOF
         params.merge!({:module => 'API', :format => 'xml', :method => method})
         params.merge!({:token_auth => auth_token}) unless auth_token.nil?
         url << params.to_query
-        verbose_obj_save = $VERBOSE
-        $VERBOSE = nil # Suppress "warning: peer certificate won't be verified in this SSL session"
-        if (defined? PIWIK_VERIFY && !PIWIK_VERIFY.nil?)
-          xml = RestClient::Request.execute(:method => :get, :url => url, :headers => {}, verify_ssl: OpenSSL::SSL::VERIFY_NONE)
-        else
-          xml = RestClient.get(url)
-        end
-        $VERBOSE = verbose_obj_save
-        if xml.is_a?(String) && xml.force_encoding('BINARY').is_binary_data?
-          xml.force_encoding('BINARY')
-        elsif xml =~ /error message=/
-          result = XmlSimple.xml_in(xml, {'ForceArray' => false})
-          raise ApiError, result['error']['message'] if result['error']
-        else
-          xml
-        end
+
+        ssl_verify_peer = (defined? PIWIK_VERIFY && !PIWIK_VERIFY.nil?)
+
+        response = Excon.new(url, ssl_verify_peer: ssl_verify_peer).request(method: :get)
+        raise ApiError, "API request failed: (#{response.status}) #{response.body}" if response.status > 299
+
+        process_xml_response response.body
       end
 
       # Checks for the config, creates it if not found
@@ -197,6 +188,17 @@ EOF
 
         end
         config
+      end
+
+      def process_xml_response(xml)
+        if xml.is_a?(String) && xml.force_encoding('BINARY').is_binary_data?
+          xml.force_encoding('BINARY')
+        elsif xml =~ /error message=/
+          result = XmlSimple.xml_in(xml, {'ForceArray' => false})
+          raise ApiError, result['error']['message'] if result['error']
+        else
+          xml.force_encoding('UTF-8').gsub(/[^\p{Print}\r\n\t]/, '\uFFFx')
+        end
       end
     end
   end
