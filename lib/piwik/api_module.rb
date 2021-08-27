@@ -28,7 +28,7 @@ module Piwik
     # but the Piwik::Site API is certainly much better to work with due to this
     def self.scoped_methods &block
       if block_given?
-        extension =  Module.new(&Proc.new)
+        extension =  Module.new(&block)
         self.extend(extension)
       end
     end
