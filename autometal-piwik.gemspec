@@ -17,11 +17,7 @@ Gem::Specification.new do |s|
   s.test_files    = s.files.grep(%r{^(test|spec|features)/})
   s.require_paths = ["lib"]
 
-  s.add_dependency('xml-simple')
-  # xml-simple needs rexml but v1.1.8 does not specify it in the gemspec
-  # this has been fixed in v1.1.9 but it has not yet been released
-  # so for now we just require it here
-  s.add_dependency('rexml')
+  s.add_dependency('xml-simple', '>= 1.1.9')
   s.add_dependency('excon')
   s.add_dependency('activesupport', '>= 3.0', '< 7.0')
   s.add_development_dependency('rspec', '< 3.0')
