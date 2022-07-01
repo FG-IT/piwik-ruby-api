@@ -26,7 +26,8 @@ module Piwik
 piwik_url:
 auth_token:
 EOF
-
+    READ_TIMEOUT = 600
+    
     # common constructor, using ostruct for attribute storage
     attr_accessor :attributes
     def initialize params = {}
@@ -153,7 +154,7 @@ EOF
 
         ssl_verify_peer = (defined? PIWIK_VERIFY && !PIWIK_VERIFY.nil?)
 
-        response = Excon.new(url, ssl_verify_peer: ssl_verify_peer).request(method: :get)
+        response = Excon.new(url, ssl_verify_peer: ssl_verify_peer).request(method: :get, read_timeout: READ_TIMEOUT)
         raise ApiError, "API request failed: (#{response.status}) #{response.body}" if response.status > 299
 
         process_xml_response response.body
