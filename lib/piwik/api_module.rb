@@ -46,6 +46,9 @@ module Piwik
     def self.api_call_to_const string, full = false
       # We can get rid of the get prefix
       string = case string
+      # TODO: this regex is incorrect, it should be (get|add|delete|save) with parentheses
+      # instead of [get|add|delete|save] with square brackets
+      # but if I "fix" it 2 specs fail in spec/site_spec.rb
       when /[A-Z]{1}[a-z]*\.[get|add|delete|save]$/,'get','add','delete','save'
         string.camelize
       else

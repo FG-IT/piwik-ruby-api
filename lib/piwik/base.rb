@@ -27,7 +27,7 @@ piwik_url:
 auth_token:
 EOF
     READ_TIMEOUT = 600
-    
+
     # common constructor, using ostruct for attribute storage
     attr_accessor :attributes
     def initialize params = {}
@@ -67,7 +67,7 @@ EOF
           created_at.blank?
         end
 
-      rescue Exception => e
+      rescue Exception => _e
         nil
       end
     end
@@ -179,7 +179,7 @@ EOF
           open(File.join(home,filename),'w') { |f| f.puts @@template }
           YAML::load(@@template)
         end
-        temp_config.each { |k,v| config[k.to_sym] = v } if temp_config        
+        temp_config.each { |k,v| config[k.to_sym] = v } if temp_config
         if config[:piwik_url] == nil || config[:auth_token] == nil
           if defined?(RAILS_ROOT) and RAILS_ROOT != nil
             raise MissingConfiguration, "Please edit ./config/piwik.yml to include your piwik url and auth_key"
