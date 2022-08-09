@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency('xml-simple', '>= 1.1.9')
   s.add_dependency('excon')
-  s.add_dependency('activesupport', '>= 3.0', '< 7.0')
+  s.add_dependency('activesupport', '>= 3.0', '< 8.0')
   s.add_development_dependency('rspec', '< 3.0')
   s.add_development_dependency('rspec-its', '< 3.0')
 end
