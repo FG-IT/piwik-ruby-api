@@ -1,5 +1,7 @@
 require 'piwik'
 
+require 'rspec/its'
+
 RSpec.configure do |config|
   Dir[File.join(File.dirname(__FILE__),'spec','support''**','*.rb')].each {|f| require f}
   config.mock_with :rspec
@@ -30,14 +32,7 @@ def stub_api_calls
     else
       File.binread File.join(success_response)
     end
-    if xml.is_a?(String) && xml.force_encoding('BINARY').is_binary_data?
-      xml.force_encoding('BINARY')
-    elsif xml =~ /error message=/
-      result = XmlSimple.xml_in(xml, {'ForceArray' => false})
-      raise Piwik::ApiError, result['error']['message'] if result['error']
-    else
-      xml
-    end
+    Piwik::Base.process_xml_response(xml)
   end
 end
 

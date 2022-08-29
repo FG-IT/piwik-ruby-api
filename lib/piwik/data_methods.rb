@@ -12,7 +12,7 @@ module Piwik
   # Example:
   #
   #   s = Piwik::API.getSettings
-  #   => #<Piwik::API::Settings:[snip] @data={"SDK_batch_size"=>"10", "SDK_interval_value"=>"30"}> 
+  #   => #<Piwik::API::Settings:[snip] @data={"SDK_batch_size"=>"10", "SDK_interval_value"=>"30"}>
   #   s.SDK_batch_size
   #   => 10
   #   s['SDK_batch_size']
@@ -25,7 +25,7 @@ module Piwik
       base.send(:include, InstanceMethods)
       attr_accessor :data,:value
     end
-    
+
     module InstanceMethods
       def empty?
         data.blank? and value.blank?

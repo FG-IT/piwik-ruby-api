@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<result>
+	<row>
+		<label>Interaction 1</label>
+		<nb_visits>2</nb_visits>
+		<nb_exits>2</nb_exits>
+		<nb_proceeded>0</nb_proceeded>
+		<proceeded_rate>0</proceeded_rate>
+		<exit_rate>100%</exit_rate>
+		<idsubdatatable>1</idsubdatatable>
+	</row>
+	<row>
+		<label>Interaction 2</label>
+		<nb_visits>0</nb_visits>
+		<nb_exits>0</nb_exits>
+		<nb_proceeded>0</nb_proceeded>
+		<proceeded_rate>0</proceeded_rate>
+		<exit_rate>0%</exit_rate>
+		<idsubdatatable>2</idsubdatatable>
+	</row>
+	<row>
+		<label>Interaction 3</label>
+		<nb_visits>0</nb_visits>
+		<nb_exits>0</nb_exits>
+		<nb_proceeded>0</nb_proceeded>
+		<proceeded_rate>0</proceeded_rate>
+		<exit_rate>0%</exit_rate>
+		<idsubdatatable>3</idsubdatatable>
+	</row>
+	<row>
+		<label>Interaction 4</label>
+		<nb_visits>0</nb_visits>
+		<nb_exits>0</nb_exits>
+		<nb_proceeded>0</nb_proceeded>
+		<proceeded_rate>0</proceeded_rate>
+		<exit_rate>0%</exit_rate>
+		<idsubdatatable>4</idsubdatatable>
+	</row>
+	<row>
+		<label>Interaction 5</label>
+		<nb_visits>0</nb_visits>
+		<nb_exits>0</nb_exits>
+		<nb_proceeded>0</nb_proceeded>
+		<proceeded_rate>0</proceeded_rate>
+		<exit_rate>0%</exit_rate>
+		<idsubdatatable>5</idsubdatatable>
+	</row>
+	<row>
+		<label>Interaction 6</label>
+		<nb_visits>0</nb_visits>
+		<nb_exits>0</nb_exits>
+		<nb_proceeded>0</nb_proceeded>
+		<proceeded_rate>0</proceeded_rate>
+		<exit_rate>0%</exit_rate>
+		<idsubdatatable>6</idsubdatatable>
+	</row>
+	<row>
+		<label>Interaction 7</label>
+		<nb_visits>0</nb_visits>
+		<nb_exits>0</nb_exits>
+		<nb_proceeded>0</nb_proceeded>
+		<proceeded_rate>0</proceeded_rate>
+		<exit_rate>0%</exit_rate>
+		<idsubdatatable>7</idsubdatatable>
+	</row>
+	<row>
+		<label>Interaction 8</label>
+		<nb_visits>0</nb_visits>
+		<nb_exits>0</nb_exits>
+		<nb_proceeded>0</nb_proceeded>
+		<proceeded_rate>0</proceeded_rate>
+		<exit_rate>0%</exit_rate>
+		<idsubdatatable>8</idsubdatatable>
+	</row>
+	<row>
+		<label>Interaction 9</label>
+		<nb_visits>0</nb_visits>
+		<nb_exits>0</nb_exits>
+		<nb_proceeded>0</nb_proceeded>
+		<proceeded_rate>0</proceeded_rate>
+		<exit_rate>0%</exit_rate>
+		<idsubdatatable>9</idsubdatatable>
+	</row>
+	<row>
+		<label>Interaction 10</label>
+		<nb_visits>0</nb_visits>
+		<nb_exits>0</nb_exits>
+		<nb_proceeded>0</nb_proceeded>
+		<proceeded_rate>0</proceeded_rate>
+		<exit_rate>0%</exit_rate>
+		<idsubdatatable>10</idsubdatatable>
+	</row>
+</result>
