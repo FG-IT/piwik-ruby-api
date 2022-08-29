@@ -12,7 +12,7 @@ We will also implement an extended `Piwik::Site` wrapper class that will give yo
   * `piwik-terminal` binary, allowing shell access.
   * Works on MRI Jruby and RBX 1.8.* and 1.9.*
   * Tested
-  
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -43,23 +43,27 @@ Unless you are using the binary, or if you are using the binary without credenti
 
 This can take place in your script or a rails initializer or whatever.
 
+If you want to use Piwik without SSL use
+
+    Piwik::PIWIK_VERIFY
+
 ### Use the wrapper class
 Fastest way to get to know the client is by using the Piwik::Site wrapper class:
-    
+
     site = Piwik::Site.load(7)
     #=> #<Piwik::Site[snip]>
-    
+
     site.annotations.all
     #=> #<Piwik::Annotations[snip]>
     site.annotations.add(:date => 'today', :starred => 1)
     #=> Piwik::ApiError: Please specify a value for 'note'.
     site.annotations.add(:note => 'meep', :date => 'today', :starred => 1)
     #=> #<Piwik::Annotations[snip]>
-    
+
     summary = site.actions.summary
     #=> #<Piwik::Actions[snip]>
     summary.nb_pageviews
-    #=> 236 
+    #=> 236
     summary.nb_uniq_pageviews
     #=> 170
 
